@@ -239,7 +239,7 @@ var mxClient =
 
 	/**
 	 * Variable: defaultBundles
-	 * 
+	 *
 	 * Contains the base names of the default bundles if mxLoadResources is false.
 	 */
   	defaultBundles: [],
@@ -305,21 +305,21 @@ var mxClient =
 	   		head.appendChild(link);
 		}
 	},
-	
+
 	/**
 	 * Function: loadResources
-	 * 
+	 *
 	 * Helper method to load the default bundles if mxLoadResources is false.
-	 * 
+	 *
 	 * Parameters:
-	 * 
+	 *
 	 * fn - Function to call after all resources have been loaded.
 	 * lan - Optional string to pass to <mxResources.add>.
 	 */
 	loadResources: function(fn, lan)
 	{
 		var pending = mxClient.defaultBundles.length;
-		
+
 		function callback()
 		{
 			if (--pending == 0)
@@ -327,13 +327,13 @@ var mxClient =
 				fn();
 			}
 		}
-		
+
 		for (var i = 0; i < mxClient.defaultBundles.length; i++)
 		{
 			mxResources.add(mxClient.defaultBundles[i], lan, callback);
 		}
 	},
-	
+
 	/**
 	 * Function: include
 	 *
@@ -390,7 +390,7 @@ if (typeof(mxLoadResources) == 'undefined')
 
 /**
  * Variable: mxForceIncludes
- * 
+ *
  * Optional global config variable to force loading the JavaScript files in
  * development mode. Default is undefined. NOTE: This is a global variable,
  * not a variable of mxClient.
@@ -409,7 +409,7 @@ if (typeof(mxForceIncludes) == 'undefined')
 
 /**
  * Variable: mxResourceExtension
- * 
+ *
  * Optional global config variable to specify the extension of resource files.
  * Default is true. NOTE: This is a global variable, not a variable of mxClient.
  *
@@ -427,7 +427,7 @@ if (typeof(mxResourceExtension) == 'undefined')
 
 /**
  * Variable: mxLoadStylesheets
- * 
+ *
  * Optional global config variable to toggle loading of the CSS files when
  * the library is initialized. Default is true. NOTE: This is a global variable,
  * not a variable of mxClient.
@@ -457,7 +457,7 @@ if (typeof(mxLoadStylesheets) == 'undefined')
  * </script>
  * <script type="text/javascript" src="/path/to/core/directory/js/mxClient.js"></script>
  * (end)
- * 
+ *
  * When using a relative path, the path is relative to the URL of the page that
  * contains the assignment. Trailing slashes are automatically removed.
  */
@@ -489,7 +489,7 @@ else
  * </script>
  * <script type="text/javascript" src="/path/to/core/directory/js/mxClient.js"></script>
  * (end)
- * 
+ *
  * When using a relative path, the path is relative to the URL of the page that
  * contains the assignment. Trailing slashes are automatically removed.
  */
@@ -505,7 +505,7 @@ if (typeof(mxImageBasePath) != 'undefined' && mxImageBasePath.length > 0)
 }
 else
 {
-	mxClient.imageBasePath = mxClient.basePath + '/images';	
+	mxClient.imageBasePath = mxClient.basePath + '/images';
 }
 
 /**
@@ -515,7 +515,7 @@ else
  * The special value 'none' will disable all built-in internationalization and
  * resource loading. See <mxResources.getSpecialBundle> for handling identifiers
  * with and without a dash.
- * 
+ *
  * Set mxLanguage prior to loading the mxClient library as follows to override
  * this setting:
  *
@@ -525,7 +525,7 @@ else
  * </script>
  * <script type="text/javascript" src="js/mxClient.js"></script>
  * (end)
- * 
+ *
  * If internationalization is disabled, then the following variables should be
  * overridden to reflect the current language of the system. These variables are
  * cleared when i18n is disabled.
@@ -550,11 +550,11 @@ else
 
 /**
  * Variable: defaultLanguage
- * 
+ *
  * Defines the default language which is used in the common resource files. Any
  * resources for this language will only load the common resource file, but not
  * the language-specific resource file. Default is 'en'.
- * 
+ *
  * Set mxDefaultLanguage prior to loading the mxClient library as follows to override
  * this setting:
  *
@@ -593,7 +593,7 @@ if (mxLoadStylesheets)
  * </script>
  * <script type="text/javascript" src="js/mxClient.js"></script>
  * (end)
- * 
+ *
  * This is used to avoid unnecessary requests to language files, ie. if a 404
  * will be returned.
  */
@@ -642,12 +642,12 @@ if (mxClient.IS_VML)
 			document.createStyleSheet().cssText = mxClient.VML_PREFIX + '\\:*{behavior:url(#default#VML)}' +
 		    	mxClient.OFFICE_PREFIX + '\\:*{behavior:url(#default#VML)}';
 		}
-	    
+
 	    if (mxLoadStylesheets)
 	    {
 	    	mxClient.link('stylesheet', mxClient.basePath + '/css/explorer.css');
 	    }
-	
+
 		// Cleans up resources when the application terminates
 		window.attachEvent('onunload', mxClient.dispose);
 	}
@@ -743,6 +743,15 @@ if (mxForceIncludes || !(typeof module === 'object' && module.exports != null))
 	mxClient.include(mxClient.basePath+'/js/model/mxCell.js');
 	mxClient.include(mxClient.basePath+'/js/model/mxGeometry.js');
 	mxClient.include(mxClient.basePath+'/js/model/mxCellPath.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxCellAttributeChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxChildChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxCollapseChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxGeometryChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxRootChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxStyleChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxTerminalChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxValueChange.js');
+	mxClient.include(mxClient.basePath+'/js/model/action/mxVisibleChange.js');
 	mxClient.include(mxClient.basePath+'/js/view/mxPerimeter.js');
 	mxClient.include(mxClient.basePath+'/js/view/mxPrintPreview.js');
 	mxClient.include(mxClient.basePath+'/js/view/mxStylesheet.js');
